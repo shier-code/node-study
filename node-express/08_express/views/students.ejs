@@ -1,0 +1,33 @@
+<!--
+ * @Desc: 
+ * @Version: v1.00
+ * @Author: went
+ * @Date: 2023-02-02 15:39:34
+ * @LastEditors: went
+ * @LastEditTime: 2023-02-06 10:10:11
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+   <%=name %> 自动将特殊符号进行转义，避免xss攻击
+   <%-name %> 直接将内容原样输出  <script>...<script>
+   <% %> 执行js代码，在服务器执行   
+    
+   -->
+  <h2>hello ejs</h2>
+  <h3><%=name %></h3>
+  <h3><%=age %></h3>
+
+  <% for(let stu of stuList){ %>
+    <%=stu.name %>-<%=stu.age %>
+
+  <%} %>
+</body>
+</html>
