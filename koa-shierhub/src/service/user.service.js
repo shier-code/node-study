@@ -1,3 +1,13 @@
+
+/*
+ * @Desc: 数据库操作
+ * @Version: v1.00
+ * @Author: went
+ * @Date: 2023-07-26 17:39:17
+ * @LastEditors: went
+ * @LastEditTime: 2023-07-26 17:47:11
+ */
+
 const connection = require('../app/database')
 
 class UserService {

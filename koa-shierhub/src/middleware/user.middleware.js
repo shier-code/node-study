@@ -1,7 +1,8 @@
 
 const { NAME_OR_PASSWORD_IS_REQUIRED, NAME_IS_ALREADY_EXISTS } = require('../config/error')
 const userService = require('../service/user.service')
-
+const md5password = require('../utils/md5-password')
+// 验证密码
 const verifyUser = async (ctx, next) => {
   //验证数据是否能保存到数据库
   const { name, password } = ctx.request.body
@@ -21,5 +22,11 @@ const verifyUser = async (ctx, next) => {
   }
   await next()
 }
+// 密码加密
+const handlePassword = async (ctx, next) => {
+  const { password } = ctx.request.body
+  ctx.request.body.password = md5password(password)
+  await next() 
 
-module.exports = { verifyUser }
+}
+module.exports = { verifyUser, handlePassword }
