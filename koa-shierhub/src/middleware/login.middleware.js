@@ -4,7 +4,7 @@
  * @Author: went
  * @Date: 2023-07-28 10:15:04
  * @LastEditors: went
- * @LastEditTime: 2023-07-28 15:17:16
+ * @LastEditTime: 2023-08-03 10:45:36
  */
 const fs = require('fs')
 const path = require('path')
@@ -40,7 +40,12 @@ const verifyLogin = async (ctx, next) => {
 const verifyAuth = async (ctx, next) => {
   //获取token
   const authorization = ctx.headers.authorization
+  if (!authorization) {
+    return ctx.app.emit('myEvent', UNAUTHORIZATION, ctx)
+  }
   const token = authorization.replace('Bearer', '')
+
+  
   try {
     //验证token
     const res = jwt.verify(token, publicKey, {
@@ -49,6 +54,7 @@ const verifyAuth = async (ctx, next) => {
     ctx.user = res
     await next()
   } catch (error) {
+    console.log('error===',error);
     ctx.app.emit('myEvent', UNAUTHORIZATION, ctx)
   }
 
